@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Sign-Up - PureSentinal</title>
+  <style>
+    body { 
+     font-family: Helvetica, sans-serif; 
+     background-color: #F4F7FA; 
+     color: #000; 
+     margin: 0; 
+     padding: 0; 
+    }
+
+    .container {  
+     max-width: 800px; 
+     margin: 0 auto; 
+     padding: 20px; 
+     text-align: center; 
+    }
+
+    .header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      background: #fff; 
+      padding: 10px 20px; 
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    }
+
+    .logo-section { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+    }
+
+    .logo-section img { 
+      width: 90px; 
+      height: 90px; 
+      object-fit: contain; 
+    }
+
+    .logo-text { 
+      font-size: 24px; 
+      font-weight: bold; 
+      color: #1d4ed8; 
+      margin: 0; 
+    }
+
+    .language-section { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-end; 
+    }
+
+    .language-label { 
+      font-size: 19px; 
+      margin-bottom: 10px; 
+      color: #000; 
+    }
+
+     .language-select { 
+       background-color: #fff; 
+       border: 1px solid #ddd; 
+       padding: 10px 16px;  
+       font-size: 19px;     
+       border-radius: 8px;  
+       cursor: pointer; 
+    }
+
+    .form-container { 
+      display: block; 
+      background: #fff; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+      margin-top: 20px; 
+      text-align: left; 
+    }
+
+    .form-container h2 { 
+      font-size: 24px; 
+      margin-bottom: 15px; 
+      text-align: center;
+    } 
+
+    .form-group { 
+       margin-bottom: 15px; 
+    }
+
+    .form-group label { 
+      display: block; 
+      font-weight: 500; 
+      margin-bottom: 5px; 
+    }
+
+    .form-group input, 
+    .form-group select { 
+      width: 100%; 
+      padding: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 6px; 
+      font-size: 14px; 
+    }
+
+    .submit-btn { 
+      width: 100%; 
+      padding: 12px; 
+      background-color: #2563eb; 
+      color: #fff; 
+      border: none; 
+      border-radius: 6px; 
+      font-size: 16px; 
+      cursor: pointer; 
+      transition: 0.3s; 
+    }
+
+    .submit-btn:hover { 
+       background-color: #143eb1; 
+    }
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-section">
+      <img src="logo.png" alt="PureSentinal Logo">
+      <span class="logo-text">PURESENTINAL</span>
+    </div>
+    <div class="language-section">
+      <label class="language-label">Select Language:</label>
+      <select id="languageSwitcher" class="language-select">
+        <option value="en">English</option>
+        <option value="as">অসমীয়া</option>
+        <option value="bn">বাংলা</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="form-container">
+      <h2 id="volunteerTitle">Volunteer Sign-Up</h2>
+      <form>
+        <div class="form-group">
+          <label id="usernameLabel">Username</label>
+          <input id="usernameInput" type="text" placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+          <label id="phoneLabel">Phone Number / Email</label>
+          <input id="phoneInput" type="text" placeholder="Enter phone number or email">
+        </div>
+        <div class="form-group">
+          <label id="genderLabel">Gender</label>
+          <select id="genderSelect">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <button id="volunteerSubmit" type="submit" class="submit-btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: { volunteerTitle: "Volunteer Sign-Up", usernameLabel: "Username", phoneLabel:"Phone Number / Email", genderLabel:"Gender", usernamePlaceholder:"Enter your username", phonePlaceholder:"Enter phone number or email", genderOptions:["Female","Male","Other"], volunteerSubmit:"Sign Up" },
+      as: { volunteerTitle:"সেচ্ছাসেৱক সাইন আপ", usernameLabel:"ব্যৱহাৰকাৰীৰ নাম", phoneLabel:"ফোন নম্বৰ / ইমেইল", genderLabel:"লিংগ", usernamePlaceholder:"ব্যৱহাৰকাৰীৰ নাম লিখক", phonePlaceholder:"ফোন বা ইমেইল লিখক", genderOptions:["মহিলা","পুৰুষ","অন্য"], volunteerSubmit:"সাইন আপ কৰক" },
+      bn: { volunteerTitle:"স্বেচ্ছাসেবক সাইন আপ", usernameLabel:"ব্যবহারকারীর নাম", phoneLabel:"ফোন নম্বর / ইমেল", genderLabel:"লিঙ্গ", usernamePlaceholder:"আপনার নাম লিখুন", phonePlaceholder:"ফোন নম্বর বা ইমেল লিখুন", genderOptions:["মহিলা","পুরুষ","অন্যান্য"], volunteerSubmit:"সাইন আপ করুন" }
+    };
+    document.getElementById('languageSwitcher').addEventListener('change', function() {
+      const t = translations[this.value];
+      document.getElementById('volunteerTitle').innerText = t.volunteerTitle;
+      document.getElementById('usernameLabel').innerText = t.usernameLabel;
+      document.getElementById('phoneLabel').innerText = t.phoneLabel;
+      document.getElementById('genderLabel').innerText = t.genderLabel;
+      document.getElementById('usernameInput').placeholder = t.usernamePlaceholder;
+      document.getElementById('phoneInput').placeholder = t.phonePlaceholder;
+      const genderSelect = document.getElementById('genderSelect');
+      genderSelect.innerHTML="";
+      t.genderOptions.forEach(o=>{ let opt=document.createElement("option"); opt.text=o; genderSelect.add(opt); });
+      document.getElementById('volunteerSubmit').innerText = t.volunteerSubmit;
+    });
+  </script>
+</body>
+</html>

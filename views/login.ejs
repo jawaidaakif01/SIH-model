@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="form-container">
+    <h2 id="loginTitle">Volunteer Login</h2>
+
+    <form action="/auth/volunteer/login" method="POST">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="Enter your email" required>
+      </div>
+       <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+    <div class="switch-link">
+        <span>Don't have an account? <a href="/volunteer">Sign up here</a></span>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

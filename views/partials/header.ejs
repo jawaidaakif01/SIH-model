@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .main-nav { display: flex; gap: 15px; align-items: center; }
+        .main-nav a { color: #1d4ed8; text-decoration: none; font-weight: bold; }
+        .main-nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <a href="/"><img src="/images/logo.png" alt="PureSentinal Logo"></a>
+            <span class="logo-text">PURESENTINAL</span>
+        </div>
+        
+        <div class="main-nav">
+            <% if (volunteer) { %>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/auth/logout">Logout</a>
+            <% } else { %>
+                <a href="/login">Volunteer Login</a>
+                <div class="language-section">
+                    <select id="languageSwitcher" class="language-select">
+                        <option value="en">English</option>
+                        <option value="as">অসমীয়া</option>
+                        <option value="bn">বাংলা</option>
+                    </select>
+                </div>
+            <% } %>
+        </div>
+    </header>

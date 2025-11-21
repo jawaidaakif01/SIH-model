@@ -4,10 +4,10 @@ const WaterReportSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+       
     },
     season: { type: String, required: true},
-    ph: {type: String, required: true},
+    ph: {type: Number, required: true},
     turbidity: { type: Number, required: true },
     tds: { type: Number, required: true }, 
     totalColiform: { type: Number, required: true },

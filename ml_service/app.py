@@ -7,7 +7,6 @@ import numpy as np
 app = Flask(__name__)
 
 
-# Load models and preprocessors
 print("Loading disease_model.pkl...")
 disease_model = joblib.load("disease_model.pkl")
 print("-> disease_model.pkl loaded successfully.")

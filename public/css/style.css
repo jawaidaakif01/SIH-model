@@ -23,6 +23,7 @@ body {
   min-height: 100vh;
 }
 
+<<<<<<< HEAD
 .container { 
     max-width: 960px; /* Increased the main container width */
     margin: 40px auto; 
@@ -37,6 +38,16 @@ body {
 }
 
 /* --- 3. Header & Navigation (Redesigned) --- */
+=======
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 20px;
+  text-align: left;
+}
+
+
+>>>>>>> c278883080d12968e6e0ae8d16859592debeb3ee
 .header {
   display: flex;
   justify-content: space-between;
@@ -213,3 +224,77 @@ body {
 .help-section a:hover {
     color: var(--accent-color);
 }
+.switch-link a {
+  color: #143eb1;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+}
+
+/* --- Dashboard Styles --- */
+.dashboard-welcome {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  text-align: center;
+}
+
+.dashboard-welcome h1 {
+  color: #1d4ed8;
+  margin-bottom: 15px;
+}
+
+/* Result page styles */
+/* Result page improvements */
+.result-wrapper { padding: 6px 0 48px; }
+.result-title { color: #0f172a; margin: 8px 0 22px; font-size: 34px; text-align: center; }
+.result-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+.result-card { background: #ffffff; padding: 22px; border-radius: 12px; box-shadow: 0 10px 30px rgba(15,23,42,0.06); text-align: left; border: 1px solid rgba(15,23,42,0.03); }
+.result-card h2 { margin-top: 0; color: #0f172a; font-size: 20px; }
+
+.submitted-card { padding-bottom: 18px; }
+.data-list { display: grid; gap: 10px; }
+.data-row { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 8px 10px; border-radius: 8px; }
+.data-row:nth-child(odd) { background: #fbfdff; }
+.data-label { color: #334155; font-weight: 600; }
+.data-val { color: #0f172a; font-weight: 600; text-align: right; }
+
+.prediction { display: flex; flex-direction: column; gap: 16px; margin-top: 6px; }
+.prediction-item { display: flex; flex-direction: column; gap: 6px; }
+.prediction-label { color: #475569; font-size: 14px; }
+.prediction-value { font-size: 22px; font-weight: 700; color: #0f172a; }
+.badge { display: inline-block; padding: 8px 14px; border-radius: 999px; color: white; font-weight: 700; font-size: 14px; }
+.severity-mild { background: linear-gradient(90deg,#16a34a,#10b981); }
+.severity-moderate { background: linear-gradient(90deg,#f59e0b,#f97316); }
+.severity-severe { background: linear-gradient(90deg,#ef4444,#dc2626); }
+.severity-unknown { background: #6b7280; }
+.muted { color: #64748b; }
+.actions { margin-top: 22px; display: flex; gap: 10px; justify-content: flex-start; }
+
+.prediction-card { border-left: 6px solid rgba(99,102,241,0.12); }
+
+.btn { display: inline-block; }
+.btn.btn-blue { background: linear-gradient(90deg,#4f46e5,#2563eb); padding: 10px 16px; border-radius: 8px; color: #fff; font-weight: 600; text-decoration: none; }
+.btn.btn-blue:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.15); }
+
+@media (min-width: 900px) {
+  .result-grid { grid-template-columns: 1fr 360px; }
+}
+
+@media (max-width: 720px) {
+  .container { padding: 18px; }
+  .result-title { font-size: 26px; }
+  .prediction-card { border-left-width: 4px; }
+}
+
+/* ensure no stray list markers inside result area */
+.result-card ul, .result-card ol { list-style: none; margin: 0; padding: 0; }
+
+/* also reset lists inside the main container to avoid stray bullets from partials */
+.container ul, .container ol { list-style: none; margin: 0; padding: 0; }

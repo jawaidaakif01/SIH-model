@@ -1,50 +1,81 @@
 <%- include('partials/header') %>
 
 <div class="container">
-  <div class="result-wrapper">
-    <h1 class="result-title">Report Result</h1>
+    <h1 class="result-page-title">Report Result</h1>
 
     <div class="result-grid">
-      <section class="result-card submitted-card" aria-labelledby="submitted-data">
-        <h2 id="submitted-data">Submitted Data</h2>
-        <div class="data-list">
-          <div class="data-row"><div class="data-label">Season</div><div class="data-val"><%= report.season %></div></div>
-          <div class="data-row"><div class="data-label">Water Source</div><div class="data-val"><%= report.waterSource %></div></div>
-          <div class="data-row"><div class="data-label">pH</div><div class="data-val"><%= report.ph %></div></div>
-          <div class="data-row"><div class="data-label">Turbidity (NTU)</div><div class="data-val"><%= report.turbidity %></div></div>
-          <div class="data-row"><div class="data-label">TDS (ppm)</div><div class="data-val"><%= report.tds %></div></div>
-          <div class="data-row"><div class="data-label">Total Coliform</div><div class="data-val"><%= report.totalColiform %></div></div>
-          <div class="data-row"><div class="data-label">Arsenic (µg/L)</div><div class="data-val"><%= report.arsenic %></div></div>
-          <div class="data-row"><div class="data-label">Nitrate (mg/L)</div><div class="data-val"><%= report.nitrate %></div></div>
-          <div class="data-row"><div class="data-label">Age Group</div><div class="data-val"><%= report.ageGroup %></div></div>
-          <div class="data-row"><div class="data-label">Gender</div><div class="data-val"><%= report.gender %></div></div>
-        </div>
-      </section>
-
-      <aside class="result-card prediction-card" aria-labelledby="ml-predictions">
-        <h2 id="ml-predictions">ML Predictions</h2>
-        <% if (report.predictedDisease || report.predictedSeverity) { %>
-          <div class="prediction">
-            <div class="prediction-item">
-              <div class="prediction-label">Disease</div>
-              <div class="prediction-value"><%= report.predictedDisease || 'N/A' %></div>
+        
+        <div class="result-card submitted-card">
+            <h3>Submitted Data</h3>
+            <div class="data-list">
+                <div class="data-row">
+                    <span class="data-label">Season</span>
+                    <span class="data-val"><%= report.season %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Water Source</span>
+                    <span class="data-val"><%= report.waterSource %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">pH</span>
+                    <span class="data-val"><%= report.ph %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Turbidity (NTU)</span>
+                    <span class="data-val"><%= report.turbidity %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">TDS (ppm)</span>
+                    <span class="data-val"><%= report.tds %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Total Coliform</span>
+                    <span class="data-val"><%= report.totalColiform %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Arsenic (µg/L)</span>
+                    <span class="data-val"><%= report.arsenic %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Nitrate (mg/L)</span>
+                    <span class="data-val"><%= report.nitrate %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Age Group</span>
+                    <span class="data-val"><%= report.ageGroup %></span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Gender</span>
+                    <span class="data-val"><%= report.gender %></span>
+                </div>
             </div>
-            <div class="prediction-item">
-              <div class="prediction-label">Severity</div>
-              <% const sev = (report.predictedSeverity || '').toLowerCase(); %>
-              <div class="badge <%= sev.includes('mild') ? 'severity-mild' : (sev.includes('moderate') ? 'severity-moderate' : (sev.includes('severe') ? 'severity-severe' : 'severity-unknown')) %>"><%= report.predictedSeverity || 'N/A' %></div>
-            </div>
-          </div>
-        <% } else { %>
-          <p class="muted">No prediction available at this time. The report has been saved and may be processed shortly.</p>
-        <% } %>
-
-        <div class="actions">
-          <a class="btn btn-blue" href="/user-dashboard">Back to Dashboard</a>
         </div>
-      </aside>
+
+        <div class="result-card prediction-card">
+            <h3>ML Predictions</h3>
+            
+            <div class="prediction-content">
+                <div class="pred-group">
+                    <span class="pred-label">Disease</span>
+                    <h2 class="pred-value"><%= report.predictedDisease %></h2>
+                </div>
+
+                <div class="pred-group">
+                    <span class="pred-label">Severity</span>
+                    <% if (report.predictedSeverity === 'Low' || report.predictedSeverity === 'Mild') { %>
+                        <span class="badge severity-mild">Mild</span>
+                    <% } else if (report.predictedSeverity === 'Moderate') { %>
+                        <span class="badge severity-moderate">Moderate</span>
+                    <% } else { %>
+                        <span class="badge severity-severe">Severe</span>
+                    <% } %>
+                </div>
+
+                <a href="/user-dashboard" class="btn btn-gradient">Back to Dashboard</a>
+                <a href="/precautions" class="btn btn-secondary-outline" style="margin-top: 10px; width: 100%; display:block;">View Precautions</a>            </div>
+        </div>
+
     </div>
-  </div>
 </div>
 
 <%- include('partials/footer') %>

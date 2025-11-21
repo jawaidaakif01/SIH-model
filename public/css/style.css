@@ -1,4 +1,8 @@
 /* --- 1. New Design System: Colors and Fonts --- */
+/* Apply Box Sizing to ALL elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 :root {
     --primary-color: #2b6777;   /* Dark Teal */
     --accent-color: #52ab98;    /* Vibrant Teal/Green */
@@ -19,40 +23,31 @@ body {
   color: var(--text-dark);
   margin: 0;
   padding: 0;
-  background-color: var(--bg-main); /* New background color */
+  background-color: var(--bg-main);
   min-height: 100vh;
 }
 
-<<<<<<< HEAD
 .container { 
-    max-width: 960px; /* Increased the main container width */
+    max-width: 960px; 
     margin: 40px auto; 
     padding: 20px; 
-}.homepage-container { 
+}
+
+.homepage-container { 
     display: flex; 
-    flex-direction: column; /* Stack items vertically */
-    align-items: center;    /* Center them horizontally */
+    flex-direction: column; 
+    align-items: center;    
     justify-content: center; 
     min-height: calc(100vh - 100px); 
     padding: 20px;
 }
 
-/* --- 3. Header & Navigation (Redesigned) --- */
-=======
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 28px 20px;
-  text-align: left;
-}
-
-
->>>>>>> c278883080d12968e6e0ae8d16859592debeb3ee
+/* --- 3. Header & Navigation --- */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--primary-color); /* New navbar color */
+  background: var(--primary-color);
   padding: 15px 40px;
   color: var(--text-on-dark);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -60,22 +55,26 @@ body {
   top: 0;
   z-index: 100; 
 }
-/* Add this to your Header & Navigation section */
-.language-label-nav {
-    margin-right: 8px; /* Adds a little space between the text and the dropdown */
-    font-weight: 500;
-    color: var(--bg-subtle);
-}
+
 .logo-section { display: flex; align-items: center; gap: 15px; }
 .logo-link { text-decoration: none; cursor: pointer; }
 .logo-text { font-size: 22px; font-weight: 700; color: var(--text-on-dark); }
+
 .main-nav { display: flex; gap: 30px; }
-.main-nav a, .nav-link { color: var(--bg-subtle); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
+.main-nav a, .nav-link { 
+    color: var(--bg-subtle); 
+    text-decoration: none; 
+    font-weight: 500; 
+    transition: color 0.2s ease;
+    background: transparent;
+}
 .main-nav a:hover, .nav-link:hover { color: var(--text-on-dark); }
+
 .user-actions { display: flex; align-items: center; gap: 20px; }
 
 /* --- 4. Content Cards --- */
-.homepage-content, .form-container {
+/* Homepage and Auth pages get the white card style */
+.homepage-content, .auth-card, .form-container {
   background: var(--bg-card);
   padding: 50px;
   border-radius: 20px;
@@ -83,25 +82,59 @@ body {
   box-shadow: var(--shadow-lg);
   width: 100%;
 }
+
+/* Dashboard Form Container is TRANSPARENT */
+.dashboard-form-container {
+    background: transparent; 
+    padding: 0; 
+    box-shadow: none; 
+    border: none;
+    width: 100%;
+}
+
 .homepage-content h1 { font-size: 52px; font-weight: 800; color: var(--text-dark); margin: 0; }
 .homepage-content p { font-size: 20px; color: var(--text-light); margin: 15px 0 35px 0; }
 
-/* --- 5. Buttons (Updated) --- */
+/* --- 5. Buttons --- */
 .button-group { display: flex; gap: 20px; justify-content: center; }
-.btn { display: inline-block; padding: 12px 28px; border: 2px solid transparent; border-radius: 8px; font-size: 16px; cursor: pointer; text-decoration: none; text-align: center; transition: all 0.2s ease; }
+.btn { 
+    display: inline-block; 
+    padding: 12px 28px; 
+    border: 2px solid transparent; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    text-align: center; 
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* Ensures padding doesn't expand width */
+}
 .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
 .btn.btn-primary { 
     background-color: var(--accent-color); 
     color: white; 
-    font-weight: 700; /* Bolder font */
+    font-weight: 700; 
 }
-.btn.btn-primary:hover { background-color: #45a08a; /* Slightly darker hover */ }
+.btn.btn-primary:hover { background-color: #45a08a; }
+.btn.btn-secondary-outline {
+    background-color: transparent;
+    color: var(--primary-color); /* Dark Teal text */
+    border: 2px solid var(--primary-color); /* Dark Teal border */
+    font-weight: 600;
+}
+
+.btn.btn-secondary-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--text-on-dark); /* White text on hover */
+}
 .btn.btn-secondary { 
     background-color: var(--primary-color); 
     color: white; 
     font-weight: 500;
 }
-.btn.btn-secondary:hover { background-color: #245866; /* Slightly darker hover */ }
+.btn.btn-secondary:hover { background-color: #245866; }
+
 .btn.btn-outline {
     background-color: transparent;
     color: var(--primary-color);
@@ -112,7 +145,6 @@ body {
     background-color: var(--primary-color);
     color: white;
 }
-
 
 /* --- 6. Form Input Styles --- */
 .form-group { 
@@ -135,20 +167,19 @@ body {
     font-family: var(--font-family);
     color: var(--text-dark);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--bg-card); /* Always white inputs */
 }
-.form-group input::placeholder {
-    color: #94a3b8; /* Lighter placeholder text */
-}
+.form-group input::placeholder { color: #94a3b8; }
 .form-group input:focus, .form-group select:focus { 
     outline: none; 
-    border-color: var(--accent-color); /* Use accent color for focus */
-    box-shadow: 0 0 0 3px rgba(82, 171, 152, 0.2); /* Matching shadow */
+    border-color: var(--accent-color); 
+    box-shadow: 0 0 0 3px rgba(82, 171, 152, 0.2); 
 }
 
-/* --- 7. Language Selector (Redesigned) --- */
+/* --- 7. Language Selector --- */
 .language-selector-btn {
-    display: flex; /* Add this */
-    align-items: center; /* Add this */
+    display: flex; 
+    align-items: center; 
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
@@ -156,9 +187,9 @@ body {
     position: relative;
     cursor: pointer;
 }
-.language-selector-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
+.language-selector-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
+.language-label-nav { margin-right: 8px; font-weight: 500; color: var(--bg-subtle); }
+
 #languageSwitcher {
     -webkit-appearance: none;
     appearance: none;
@@ -171,9 +202,7 @@ body {
     padding-right: 20px;
     cursor: pointer;
 }
-#languageSwitcher option {
-    color: black; /* Options in dropdown should be readable */
-}
+#languageSwitcher option { color: black; }
 .language-selector-btn::after {
     content: '▼';
     font-size: 10px;
@@ -184,117 +213,59 @@ body {
     transform: translateY(-50%);
     pointer-events: none;
 }
-.switch-link { text-align: center; margin-top: 20px; font-size: 15px; }
 
-/* --- 8. Page Intro Section --- */
+/* --- 8. Page Intro & Help --- */
 .page-intro {
     text-align: center;
-    max-width: 800px; /* Increased width */
+    max-width: 800px; 
     margin: 0 auto 40px auto;
 }
-.page-intro h2 {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 15px;
-}
+.page-intro h2 { font-size: 36px; font-weight: 800; color: var(--text-dark); margin-bottom: 15px; }
+.page-intro p { font-size: 18px; color: var(--text-light); line-height: 1.7; }
 
-.page-intro p {
-    font-size: 18px;
-    color: var(--text-light);
-    line-height: 1.7;
-}
+.help-section { margin-top: 40px; text-align: center; }
+.help-section p { font-size: 16px; color: var(--text-light); }
+.help-section a { color: var(--primary-color); font-weight: 600; text-decoration: underline; }
+.help-section a:hover { color: var(--accent-color); }
 
-.help-section {
-    margin-top: 40px;
-    text-align: center;
-}
+.switch-link { text-align: center; margin-top: 20px; font-size: 15px; }
 
-.help-section p {
-    font-size: 16px;
-    color: var(--text-light);
-}
-
-.help-section a {
-    color: var(--primary-color);
-    font-weight: 600;
-    text-decoration: underline;
-}
-
-.help-section a:hover {
-    color: var(--accent-color);
-}
-.switch-link a {
-  color: #143eb1;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.switch-link a:hover {
-  text-decoration: underline;
-}
-
-/* --- Dashboard Styles --- */
+/* --- 9. Dashboard Welcome (Cleaned Up) --- */
 .dashboard-welcome {
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 30px;
+  background-color: transparent; 
+  padding: 20px 0;
+  margin-top: 10px;
   text-align: center;
+  border: none;
+  box-shadow: none;
 }
+.dashboard-welcome h1 { color: var(--text-dark); margin-bottom: 10px; }
+.dashboard-welcome p { color: var(--text-light); }
 
-.dashboard-welcome h1 {
-  color: #1d4ed8;
-  margin-bottom: 15px;
+/* --- 10. Result Page Styles --- */
+.result-page-title { text-align: center; font-size: 36px; font-weight: 800; color: var(--text-dark); margin-bottom: 40px; }
+.result-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 30px; align-items: start; }
+.result-card { background: var(--bg-card); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid var(--bg-subtle); }
+.result-card h3 { margin-top: 0; margin-bottom: 20px; font-size: 20px; font-weight: 800; color: var(--text-dark); }
+
+.data-list { display: flex; flex-direction: column; gap: 12px; }
+.data-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; }
+.data-label { color: var(--text-light); font-weight: 600; font-size: 15px; }
+.data-val { color: var(--text-dark); font-weight: 700; font-size: 15px; }
+
+.prediction-content { display: flex; flex-direction: column; gap: 20px; }
+.pred-group { display: flex; flex-direction: column; gap: 5px; }
+.pred-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-light); font-weight: 600; }
+.pred-value { font-size: 28px; font-weight: 800; color: #0f172a; margin: 0; }
+
+.badge { display: inline-block; padding: 8px 20px; border-radius: 50px; color: white; font-weight: 700; font-size: 14px; width: fit-content; }
+.severity-mild { background-color: #10b981; }
+.severity-moderate { background-color: #f59e0b; }
+.severity-severe { background-color: #ef4444; }
+
+.btn-gradient { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; font-weight: 700; padding: 12px 0; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3); transition: transform 0.2s; }
+.btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4); }
+
+@media (max-width: 768px) {
+    .result-grid { grid-template-columns: 1fr; }
 }
-
-/* Result page styles */
-/* Result page improvements */
-.result-wrapper { padding: 6px 0 48px; }
-.result-title { color: #0f172a; margin: 8px 0 22px; font-size: 34px; text-align: center; }
-.result-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
-.result-card { background: #ffffff; padding: 22px; border-radius: 12px; box-shadow: 0 10px 30px rgba(15,23,42,0.06); text-align: left; border: 1px solid rgba(15,23,42,0.03); }
-.result-card h2 { margin-top: 0; color: #0f172a; font-size: 20px; }
-
-.submitted-card { padding-bottom: 18px; }
-.data-list { display: grid; gap: 10px; }
-.data-row { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 8px 10px; border-radius: 8px; }
-.data-row:nth-child(odd) { background: #fbfdff; }
-.data-label { color: #334155; font-weight: 600; }
-.data-val { color: #0f172a; font-weight: 600; text-align: right; }
-
-.prediction { display: flex; flex-direction: column; gap: 16px; margin-top: 6px; }
-.prediction-item { display: flex; flex-direction: column; gap: 6px; }
-.prediction-label { color: #475569; font-size: 14px; }
-.prediction-value { font-size: 22px; font-weight: 700; color: #0f172a; }
-.badge { display: inline-block; padding: 8px 14px; border-radius: 999px; color: white; font-weight: 700; font-size: 14px; }
-.severity-mild { background: linear-gradient(90deg,#16a34a,#10b981); }
-.severity-moderate { background: linear-gradient(90deg,#f59e0b,#f97316); }
-.severity-severe { background: linear-gradient(90deg,#ef4444,#dc2626); }
-.severity-unknown { background: #6b7280; }
-.muted { color: #64748b; }
-.actions { margin-top: 22px; display: flex; gap: 10px; justify-content: flex-start; }
-
-.prediction-card { border-left: 6px solid rgba(99,102,241,0.12); }
-
-.btn { display: inline-block; }
-.btn.btn-blue { background: linear-gradient(90deg,#4f46e5,#2563eb); padding: 10px 16px; border-radius: 8px; color: #fff; font-weight: 600; text-decoration: none; }
-.btn.btn-blue:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.15); }
-
-@media (min-width: 900px) {
-  .result-grid { grid-template-columns: 1fr 360px; }
-}
-
-@media (max-width: 720px) {
-  .container { padding: 18px; }
-  .result-title { font-size: 26px; }
-  .prediction-card { border-left-width: 4px; }
-}
-
-/* ensure no stray list markers inside result area */
-.result-card ul, .result-card ol { list-style: none; margin: 0; padding: 0; }
-
-/* also reset lists inside the main container to avoid stray bullets from partials */
-.container ul, .container ol { list-style: none; margin: 0; padding: 0; }

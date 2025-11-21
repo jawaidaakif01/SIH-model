@@ -1,34 +1,33 @@
 <%- include('partials/header') %>
-
 <div class="container">
-  <div class="form-container">
-    <h2 id="volunteerTitle">Volunteer Sign-Up</h2>
-    <form action="/auth/volunteer/register" method="POST">
-      <div class="form-group">
-        <label id="usernameLabel">Username</label>
-        <input id="usernameInput" name="name" type="text" placeholder="Enter your username" required>
-      </div>
-      <div class="form-group">
-        <label id="phoneLabel">Phone Number / Email</label>
-        <input id="phoneInput" name="email" type="text" placeholder="Enter phone number or email" required>
-      </div>
-       <div class="form-group">
-        <label id="passwordLabel">Password</label>
-        <input id="passwordInput" name="password" type="password" placeholder="Enter your password" required>
-      </div>
-      <div class="form-group">
-        <label id="genderLabel">Gender</label>
-        <select id="genderSelect" name="gender">
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <button id="volunteerSubmit" type="submit" class="submit-btn">Sign Up</button>
-    </form>
-  </div>
+    <div class="form-container">
+        <h2><%= t.volunteer_signup_title %></h2>
+        <form action="/auth/volunteer/register" method="POST">
+            <div class="form-group">
+                <label><%= t.username_label %></label>
+                <input name="name" type="text" placeholder="<%= t.username_placeholder %>" required>
+            </div>
+            <div class="form-group">
+                <label><%= t.email_label %></label>
+                <input name="email" type="text" placeholder="<%= t.email_placeholder %>" required>
+            </div>
+            <div class="form-group">
+                <label><%= t.password_label %></label>
+                <input name="password" type="password" placeholder="<%= t.password_placeholder_create %>" required>
+            </div>
+            <div class="form-group">
+                <label><%= t.gender_label %></label>
+                <select name="gender">
+                    <option value="Female"><%= t.gender_female %></option>
+                    <option value="Male"><%= t.gender_male %></option>
+                    <option value="Other"><%= t.gender_other %></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;"><%= t.volunteer_signup_button %></button>
+        </form>
+        <div class="switch-link">
+            <a href="/login" class="btn btn-outline"><%= t.volunteer_signup_switch %></a>
+        </div>
+    </div>
 </div>
-
-<script src="/js/volunteer.js"></script>
-
 <%- include('partials/footer') %>

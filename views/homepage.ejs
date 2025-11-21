@@ -1,15 +1,24 @@
 <%- include('partials/header') %>
 
-<div class="container">
-  <h1 id="title" class="homepage-title">PureSentinal</h1>
-  <p id="subtitle" class="homepage-subtitle">Smart Monitoring for Safer Communities</p>
+<div class="container homepage-container">
+    <div class="page-intro">
+        <h2><%= t.home_title %></h2>
+        <p><%= t.home_subtitle %></p>
+    </div>
 
-  <div class="button-group">
-    <a href="/volunteer" id="volunteerBtn" class="btn btn-blue">Sign Up as Volunteer</a>
-    <a href="/health" id="assessmentBtn" class="btn btn-green">Start Health Assessment</a>
-  </div>
+    <div class="homepage-content">
+        <h1 id="title"><%= t.card_title %></h1>
+        <p id="subtitle"><%= t.card_subtitle %></p>
+
+        <div class="button-group">
+            <a href="/login" class="btn btn-primary"><%= t.btn_volunteer %></a>
+            <a href="/health" class="btn btn-secondary"><%= t.btn_assessment %></a>
+        </div>
+    </div>
+
+    <div class="help-section">
+        <p><%= t.help_text %> <a href="/demo"><%= t.help_link %></a>.</p>
+    </div>
 </div>
-
-<script src="/js/home.js"></script>
 
 <%- include('partials/footer') %>

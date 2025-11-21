@@ -5,8 +5,11 @@ exports.renderHomepage = (req, res) => {
 };
 
 exports.renderHealthPage = (req, res) => {
-    res.render('health', {
-        title: 'Health Assessment - PureSentinal'
+    if (req.session.userId) {
+        return res.redirect('/user-dashboard');
+    }
+    res.render('health', { 
+        title: 'User Login/Signup'
     });
 };
 
@@ -31,5 +34,11 @@ exports.renderDashboard = (req, res) => {
 exports.renderUserDashboard = (req, res) => {
     res.render('userDashboard', {
         title: 'User Dashboard'
+    });
+};
+
+exports.renderUserSignupPage = (req, res) => {
+    res.render('signup', { 
+        title: 'User Signup'
     });
 };

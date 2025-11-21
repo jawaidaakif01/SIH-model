@@ -1,33 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        .main-nav { display: flex; gap: 15px; align-items: center; }
-        .main-nav a { color: #1d4ed8; text-decoration: none; font-weight: bold; }
-        .main-nav a:hover { text-decoration: underline; }
-    </style>
 </head>
+
 <body>
     <header class="header">
         <div class="logo-section">
-            <a href="/"><img src="/images/logo.png" alt="PureSentinal Logo"></a>
-            <span class="logo-text">PURESENTINAL</span>
+            <a href="/" class="logo-link">
+                <span class="logo-text">HydroShield</span>
+            </a>
         </div>
-        
-        <div class="main-nav">
+
+        <nav class="main-nav">
+            <a href="/contact">Contact Us</a>
+        </nav>
+
+        <div class="user-actions">
             <% if (volunteer) { %>
-                <a href="/dashboard">Dashboard</a>
-                <a href="/auth/logout">Logout</a>
-            <% } else { %>
-                <a href="/login">Volunteer Login</a>
-                <div class="language-section">
-                    <select id="languageSwitcher" class="language-select">
-                        <option value="en">English</option>
-                        <option value="as">অসমীয়া</option>
-                        <option value="bn">বাংলা</option>
-                    </select>
-                </div>
-            <% } %>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+                <a href="/auth/logout" class="nav-link">Logout</a>
+                <% } else if (user) { %>
+                    <a href="/user-dashboard" class="nav-link">Dashboard</a>
+                    <a href="/auth/logout" class="nav-link">Logout</a>
+                    <% } else { %>
+                        <div class="language-selector-btn">
+                            <span class="language-label-nav">
+                                <%= t.select_language_label %>
+                            </span>
+
+                            <select id="languageSwitcher">
+                                <option value="en" <%=currentLang==='en' ? 'selected' : '' %>>English</option>
+                                <option value="as" <%=currentLang==='as' ? 'selected' : '' %>>অসমীয়া</option>
+                                <option value="bn" <%=currentLang==='bn' ? 'selected' : '' %>>বাংলা</option>
+                            </select>
+                        </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const langSwitcher = document.getElementById('languageSwitcher');
+                                if (langSwitcher) {
+                                    langSwitcher.addEventListener('change', function () {
+                                        const selectedLang = this.value;
+                                        fetch('/language/set', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ language: selectedLang })
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    });
+                                }
+                            });
+                        </script>
+                        <% } %>
         </div>
     </header>

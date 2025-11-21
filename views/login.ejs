@@ -1,24 +1,21 @@
 <%- include('partials/header') %>
-
 <div class="container">
-  <div class="form-container">
-    <h2 id="loginTitle">Volunteer Login</h2>
-
-    <form action="/auth/volunteer/login" method="POST">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="Enter your email" required>
-      </div>
-       <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" placeholder="Enter your password" required>
-      </div>
-      <button type="submit" class="submit-btn">Login</button>
-    </form>
-    <div class="switch-link">
-        <span>Don't have an account? <a href="/volunteer">Sign up here</a></span>
+    <div class="form-container">
+        <h2><%= t.volunteer_login_title %></h2>
+        <form action="/auth/volunteer/login" method="POST">
+            <div class="form-group">
+                <label><%= t.email_label %></label>
+                <input name="email" type="email" placeholder="<%= t.email_placeholder %>" required>
+            </div>
+            <div class="form-group">
+                <label><%= t.password_label %></label>
+                <input name="password" type="password" placeholder="<%= t.password_placeholder %>" required>
+            </div>
+            <button type="submit" class="btn btn-secondary" style="width: 100%;"><%= t.volunteer_login_button %></button>
+        </form>
+        <div class="switch-link">
+            <a href="/volunteer" class="btn btn-outline"><%= t.volunteer_login_switch %></a>
+        </div>
     </div>
-  </div>
 </div>
-
 <%- include('partials/footer') %>
